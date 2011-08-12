@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+<!--
+<error-page>
+		<error-code>404</error-code>
+		<location>/error/404</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error/500</location>
+	</error-page>
+-->
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/spring/security-config.xml
+			/WEB-INF/spring/app-config.xml
+			/WEB-INF/spring/mvc-config.xml
+			/WEB-INF/spring/couchdb-config.xml
+		</param-value>
+	</context-param>
+
+	<!-- Loads the Spring application context -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<filter>
+		<filter-name>UrlRewriteFilter</filter-name>
+		<filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+		<!-- 
+		<init-param>
+			<param-name>logLevel</param-name>
+			<param-value>DEBUG</param-value>
+		</init-param>
+		-->
+	</filter>
+
+	<filter-mapping>
+		<filter-name>UrlRewriteFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- Enables Spring Security -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter>
+		<filter-name>encoding-filter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encoding-filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/auth/*</url-pattern>
+		<url-pattern>/about/*</url-pattern>
+		<url-pattern>/view/*</url-pattern>
+		<url-pattern>/home/*</url-pattern>
+		<url-pattern>/admin/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+	</filter-mapping>
+	<!--  /Enables Spring Security -->
+
+	<!-- Handles all requests into the application -->
+	<servlet>
+		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<!--
+				GSB: we're using ContextLoaderListener, so pass in an empty string
+				as not to doubly load the context
+			-->
+			<param-value></param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<!--
+		Maps all /site/ and /ws/ requests to the DispatcherServlet for
+		handling
+	-->
+	<servlet-mapping>
+		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+		<url-pattern>/about/*</url-pattern>
+		<url-pattern>/view/*</url-pattern>
+		<url-pattern>/auth/*</url-pattern>
+		<url-pattern>/home/*</url-pattern>
+		<url-pattern>/admin/*</url-pattern>
+		<url-pattern>/ws/*</url-pattern>
+	</servlet-mapping>
+
+	<!--
+		Serves static resource content from the webapp root & .jar files such
+		as spring-js.jar
+	-->
+	<!--
+		<servlet> <servlet-name>Resources Servlet</servlet-name>
+		<servlet-class>org.springframework.js.resource.ResourceServlet</servlet-class>
+		<load-on-startup>0</load-on-startup> </servlet>
+	-->
+
+	<!--
+		Map all /resources requests to the Resource Servlet for handling
+	-->
+	<!--
+		<servlet-mapping> <servlet-name>Resources Servlet</servlet-name>
+		<url-pattern>/resources/*</url-pattern> </servlet-mapping>
+	-->
+
+
+	<!--
+		Declare that the container should enforce the rule that all session
+		attributes should be Serializable. This will ensure that the code will
+		be compatible with any future attempt to set up session clustering.
+	-->
+	<distributable />
+
+</web-app>

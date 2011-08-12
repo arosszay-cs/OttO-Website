@@ -1,0 +1,19 @@
+
+table {
+	font-size: 11px;
+}
+th {
+	text-align: left;
+	text-transform: uppercase;
+	border-spacing: 2px;
+	padding: 3px;
+	background: rgba(255,255,255,0.4);
+}	
+td {
+	border-spacing: 2px;
+	padding: 3px;
+	background: rgba(255,255,255,0.2);
+}
+td.darkfont {
+	background: rgba(148,148,148,0.2);
+}

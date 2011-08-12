@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<!-- HANDLER MAPPING RULES -->
+	
+	<!-- Maps requests to @Controllers based on @RequestMapping("path") annotation values
+		 If no annotation-based path mapping is found, Spring MVC sends a 404 response and logs a pageNotFound warning. -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<property name="order" value="1" />
+		<property name="alwaysUseFullPath" value="true" />
+        <property name="interceptors">
+            <list>
+                <ref bean="currentUserHandlerInterceptor"/>
+            </list>
+        </property>
+	</bean>
+	
+	<bean id="currentUserHandlerInterceptor" class="com.communispace.otto.web.CurrentUserHandlerInterceptor" />
+	
+	<!-- REGISTERED HANDLER TYPES -->
+
+	<!-- Enables annotated @Controllers; responsible for invoking an annotated POJO @Controller when one is mapped. -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="alwaysUseFullPath" value="true"/>
+	</bean>
+
+
+	<!-- freemarker config -->
+	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/WEB-INF/freemarker/"/>
+	</bean>
+
+	<bean id="freemarkerViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="cache" value="true"/>
+		<property name="prefix" value=""/>
+		<property name="suffix" value=".ftl"/>
+		
+		<!-- if you want to use the Spring FreeMarker macros, set this property to true -->
+		<property name="exposeSpringMacroHelpers" value="true"/>
+		<property name="requestContextAttribute" value="rc"/>
+		
+		
+	</bean>
+
+	<!-- Configures Apache Commons Fileupload 
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+ 		<property name="maxUploadSize" value="10000000"/>
+	</bean>
+	-->
+	
+</beans>
