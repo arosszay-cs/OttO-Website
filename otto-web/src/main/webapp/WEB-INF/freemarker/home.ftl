@@ -6,15 +6,35 @@
 <body>
 
 <h1>LIST OF ALL TEST RESULTS!</h1>
-<ul>
 
-<#list testResults as testResult>
-    <li>${testResult.testClass} : ${testResult.component} (${testResult.duration}sec)</li>
+
+<#list tests as test>
+	<h1>${test.testClass}</h1>
+	<#if test.description??>
+		<p>${test.description}</p>
+	</#if>
+	<#list test.categories as category>
+		<span>${category}</span>
+	</#list>
+	<#list test.results as testResult>
+		<h2>${testResult.dateExecuted}</h2>
+		<h3>${testResult.outcome} (${testResult.duration} sec)</h3>
+		<#if testResult.message??>
+			<h4>message</h4>
+			<p>${testResult.message}</p>
+		</#if>
+		<#if testResult.stackTrace??>
+			<h4>stacktrace</h4>
+			<p>${testResult.stackTrace}</p>
+		</#if>
+
+
+	</#list>
 </#list>
 
-</ul>
 
 
+<#--
 <form method="POST" action="add">
 	<label for="testClass">Test Class:</label>
 	<input type="text" name="testClass" />
@@ -41,6 +61,7 @@
 
 	<button>SUBMIT</button>
 </form>
+--#>
 
 </body>
 

@@ -11,11 +11,24 @@ import org.joda.time.DateTime;
  * @author GBarnett
  */
 public class TestResult {
-    
+   
+	// from nunit:
+	private DateTime dateExecuted;
+    private Outcome outcome;
+    private double duration; 
+
+	private String message;
+	private String stackTrace;
+	
+	// from humans:
+    private Reason reason;
+
+	 
     public enum Outcome {
         SUCCESS,
         FAILURE,
-        INCONCLUSIVE
+        INCONCLUSIVE,
+		NOT_RUN
     }
     
     public enum Reason {
@@ -24,19 +37,12 @@ public class TestResult {
         SCRIPTING
     }
     
-	// from nunit:
-	private DateTime dateExecuted;
-    private Outcome outcome;
-    private int duration;    
-	
-	// from humans:
-    private Reason reason;
 
-	public int getDuration() {
+
+	public double getDuration() {
 		return duration;
 	}
-
-	public void setDuration(int duration) {
+	public void setDuration(double duration) {
 		this.duration = duration;
 	}
 
@@ -63,5 +69,23 @@ public class TestResult {
     public void setReason(Reason reason) {
         this.reason = reason;
     }
-        
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getStackTrace() {
+		return stackTrace;
+	}
+
+	public void setStackTrace(String stackTrace) {
+		this.stackTrace = stackTrace;
+	}
+      
+
+	
 }

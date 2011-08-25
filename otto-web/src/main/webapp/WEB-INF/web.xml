@@ -68,10 +68,8 @@
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/auth/*</url-pattern>
-		<url-pattern>/about/*</url-pattern>
-		<url-pattern>/view/*</url-pattern>
 		<url-pattern>/home/*</url-pattern>
-		<url-pattern>/admin/*</url-pattern>
+		<url-pattern>/ws/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
@@ -99,11 +97,8 @@
 	-->
 	<servlet-mapping>
 		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
-		<url-pattern>/about/*</url-pattern>
-		<url-pattern>/view/*</url-pattern>
 		<url-pattern>/auth/*</url-pattern>
 		<url-pattern>/home/*</url-pattern>
-		<url-pattern>/admin/*</url-pattern>
 		<url-pattern>/ws/*</url-pattern>
 	</servlet-mapping>
 

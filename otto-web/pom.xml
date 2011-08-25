@@ -112,7 +112,7 @@
 				</includes>
 			</resource>
 		</resources>
-		<finalName>frontend</finalName>
+		<finalName>otto</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
