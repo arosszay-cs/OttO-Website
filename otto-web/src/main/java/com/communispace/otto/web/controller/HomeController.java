@@ -1,9 +1,9 @@
 package com.communispace.otto.web.controller;
 
 import com.communispace.otto.persistence.Test;
-import com.communispace.otto.persistence.TestResult;
 import com.communispace.otto.persistence.TestRepository;
-import java.util.List;
+
+import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +23,11 @@ public class HomeController {
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Model model) {
 
-		List<Test> tests = testRespository.getAll();
+//		List<Test> tests = testRespository.getAll();
+//
+//		model.addAttribute("tests", tests);
 
-		model.addAttribute("tests", tests);
-
+		model.addAttribute("pastWeekUnstableTests", testRespository.getPastWeekUnstable());
 		return "home"; // this String is the name of the view to display
 
 	}

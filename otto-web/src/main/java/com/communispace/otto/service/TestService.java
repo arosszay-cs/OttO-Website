@@ -50,9 +50,6 @@ public class TestService {
 			matchingTest.setCategories(nunitResult.Categories);
 			matchingTest.addResult(testResult);
 
-			//TODO: if we want to keep the number of results constrained
-			// (e.g. max 100), do it here
-
 			testRepository.update(matchingTest);
 		}
 		
