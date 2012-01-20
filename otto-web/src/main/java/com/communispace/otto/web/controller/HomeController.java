@@ -23,7 +23,7 @@ public class HomeController {
 	@Autowired(required = true)
 	protected TestRepository testRespository;
 
-	private CacheableResult<List<Test>> cacheableDroneDesignsResult =
+	private CacheableResult<List<Test>> pastWeekUnstableTests =
 			new CacheableResult<List<Test>>(new Duration(1000 * 60 * 15)) {
 				protected List<Test> retrieveFreshResult() {
 					return testRespository.getPastWeekUnstable();
@@ -38,7 +38,7 @@ public class HomeController {
 //		model.addAttribute("tests", tests);
 
 		//TODO cacheable this shit... import from DA?
-		model.addAttribute("pastWeekUnstableTests", cacheableDroneDesignsResult.getResult());
+		model.addAttribute("pastWeekUnstableTests", pastWeekUnstableTests.getResult());
 		return "home"; // this String is the name of the view to display
 
 	}

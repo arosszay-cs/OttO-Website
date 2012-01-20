@@ -18,6 +18,7 @@ public class Test extends CouchDbDocument {
 	private List<String> categories = new ArrayList<String>();
 	private List<TestResult> results = new ArrayList<TestResult>();
 	private String description;
+	private String jiraId;
 	
 	public static final int MAX_RESULTS_RETAINED = 14;
 
@@ -28,11 +29,11 @@ public class Test extends CouchDbDocument {
 		results.add(tr);
 	}
 
-        public List<TestResult> getLatestResults(int howMany) {
-            
-            int firstIndex = results.size() - howMany;
-            return results.subList(firstIndex > 0 ? firstIndex : 0, results.size());
-        }
+	public List<TestResult> getLatestResults(int howMany) {
+
+		int firstIndex = results.size() - howMany;
+		return results.subList(firstIndex > 0 ? firstIndex : 0, results.size());
+	}
 
 	public List<String> getCategories() {
 		return categories;
@@ -65,4 +66,14 @@ public class Test extends CouchDbDocument {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public String getJiraId() {
+		return jiraId;
+	}
+
+	public void setJiraId(String jiraId) {
+		this.jiraId = jiraId;
+	}
+	
+	
 }

@@ -4,7 +4,7 @@
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<title>otto - home</title>
+		<title>otto - test - ${test.testClass}</title>
 		<link href="${rc.contextPath}/css/indicator.css" rel="stylesheet" type="text/css" media="screen" />
 		<link href="${rc.contextPath}/css/otto.css" rel="stylesheet" type="text/css" media="screen" />
 	</head>
@@ -23,40 +23,15 @@
 			<div id="page">
 				<div id="content">
 
-					<#if pastWeekUnstableTests?? && pastWeekUnstableTests?size &gt; 0>
-
 					<div class="post">
-						<h2 class="title">Volatile - Past 7 Days (${pastWeekUnstableTests?size})</h2>
+						<h2 class="title">${test.testClass?replace("V6GUIAutomation.TestClasses.","")?replace(".","<br />.")}</h2>
 						<div class="entry">
+							JIRA
 							
 							
-							<table>
-								<thead>
-									<tr>
-										<th>Test</th>
-										<th>JIRA</th>
-										<#list pastWeekUnstableTests[0].getLatestResults(7) as testResult>
-											<th class="test-execution-date">${testResult.dateExecuted.toString('E')}</th>
-										</#list>
-									</tr>
-								</thead>
-								<tbody>
-									<#list pastWeekUnstableTests as test>
-									<tr>
-										<td><a class="test-detail" href="${rc.contextPath}/home/test/${test.id}">${test.testClass?replace("V6GUIAutomation.TestClasses.","")?replace(".","<wbr>.")}</a></td>
-										<td><a href="#">N/A</a></td>
-										<#list test.getLatestResults(7) as testResult>                                                       
-											<td class="test-result test-result-${testResult.outcome}">
-											</td>
-										</#list>
-									</tr>
-									</#list>
-								</tbody>
-
-							</table>
+							
 						</div>
 					</div>
-					</#if>
 
 
 					<div style="clear: both;">&nbsp;</div>

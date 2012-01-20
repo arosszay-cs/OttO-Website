@@ -5,11 +5,13 @@
 package com.communispace.otto.web.model;
 
 import java.util.List;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
  *
  * @author GBarnett
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class NUnitResult {
 	public String Name;
 	public boolean Executed;
@@ -20,4 +22,5 @@ public class NUnitResult {
 	public String Message;
 	public String StackTrace;
 	public String Description;
+	public String Browser;
 }

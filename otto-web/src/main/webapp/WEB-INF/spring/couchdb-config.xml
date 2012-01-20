@@ -13,8 +13,8 @@
 	<util:properties id="couchdbProperties" location="classpath:/couchdb.properties" />
 
 	<bean id="ektorpHttpClient" class="org.ektorp.spring.HttpClientFactoryBean">
-<!--		<property name="username" value="${couchdb.username}" />
-		<property name="password" value="${couchdb.password}" />-->
+		<property name="username" value="${couchdb.username}" />
+		<property name="password" value="${couchdb.password}" />
 		<property name="autoUpdateViewOnChange" value="true" />
  	</bean>
 

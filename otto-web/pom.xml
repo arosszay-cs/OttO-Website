@@ -171,8 +171,8 @@
 			<properties>
 				<couchdb.host>qaotto01.dev.qadev.local</couchdb.host>
 				<couchdb.port>8080</couchdb.port>
-				<couchdb.username>dis</couchdb.username>
-				<couchdb.password>dat</couchdb.password>
+				<couchdb.username>admin</couchdb.username>
+				<couchdb.password>Password1</couchdb.password>
 			</properties>
 		</profile>
 	</profiles>

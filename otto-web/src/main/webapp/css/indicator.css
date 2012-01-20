@@ -20,7 +20,6 @@ body {
 
 #page {
     overflow: auto;
-    color: #F00;
 }
 
 h1, h2, h3 {
@@ -362,7 +361,3 @@ a:hover {
 	color: #8A8A8A;
 }
 
-
-table {
-    color: #444;
-}

@@ -1,0 +1,43 @@
+
+table {
+    color: #444;
+}
+
+a.test-detail {
+	text-decoration: none;
+}
+
+
+
+td.test-result {
+	width: 16px;
+	height: 16px;
+	background-repeat: no-repeat;
+}
+
+th {
+	text-align: left;
+}
+
+th.test-execution-date {
+	font-size: 9px;
+	overflow: visible;
+}
+
+td.test-result-SUCCESS {
+	background-image: url(../images/icons/pass.png);
+}
+
+td.test-result-FAILURE {
+	background-image: url(../images/icons/fail.png);
+	
+}
+
+td.test-result-INCONCLUSIVE {
+	background-image: url(../images/icons/inconclusive.png);
+}
+
+td.test-result-NOT_RUN {
+	background-image: url(../images/icons/not-run.png);
+	
+}
